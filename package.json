@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "e2e"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace movie-trivia-client build",
+    "dev": "yarn workspace movie-trivia-server dev",
+    "dev:debug": "yarn workspace movie-trivia-server dev:debug",
+    "heroku-postbuild": "yarn workspace movie-trivia-client build",
+    "start": "yarn workspace movie-trivia-server start",
+    "dev:cypress": "yarn workspace movie-trivia-server dev:e2e",
+    "e2e:open": "yarn workspace movie-trivia-e2e e2e:open",
+    "e2e:run": "yarn workspace movie-trivia-e2e e2e:run"
+  },
+  "engines": {
+    "node": "^14.15"
+  }
+}
