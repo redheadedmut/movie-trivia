@@ -7,6 +7,7 @@ import TriviaLogic from "./TriviaLogic"
 const MainPage = (props) =>{
   
   const [questions, setQuestions] = useState([])
+  const [movies, setMovies] = useState([])
 
   const fetchQuestions = async () => {
     try {
@@ -19,8 +20,20 @@ const MainPage = (props) =>{
     }
   }
 
+  const fetchMovies = async () => {
+    try {
+      const response = await fetch(`/api/v1/movies`)
+      const body = await response.json()
+      const movieArr = body.movies
+      setMovies(movieArr)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     fetchQuestions()
+    fetchMovies()
   }, [])
 
 
@@ -39,7 +52,7 @@ const MainPage = (props) =>{
 
   return(
     <div>
-      <TriviaLogic questions = {randomizedQuestions} randomize ={randomize}/>
+      <TriviaLogic questions = {randomizedQuestions} movies = {movies} randomize ={randomize}/>
     </div>
   )
 }

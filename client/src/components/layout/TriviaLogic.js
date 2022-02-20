@@ -71,9 +71,13 @@ const TriviaLogic = (props) => {
     gameOverMessage = (<h1 onClick={() => postGame(game)}>Game Over! Your score is {score}. Click here to save your game!</h1>)
   }
 
+  const curentMovie = props.movies.find(movie => movie.id === props.questions[currentQuestion]?.movieId)
+
+
   return(
     <div>
       <h3>Your score is: {score}</h3>
+      <h1>{curentMovie?.title}</h1>
       <h1>{props.questions[currentQuestion]?.prompt}</h1>
       <p onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[0])}>{props.questions[currentQuestion]?.randomAnswers[0]}</p>
       <p onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[1])}>{props.questions[currentQuestion]?.randomAnswers[1]}</p>
