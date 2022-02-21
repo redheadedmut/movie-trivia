@@ -6,7 +6,10 @@ const gamesRouter = new express.Router();
 gamesRouter.get("/", async (req, res) => {
   try {
     const games = await Game.query();
-    console.log(games)
+
+    games.sort(function (a, b) {
+      return b.score - a.score;
+    });
     return res.status(200).json({ games: games });
   } catch (error) {
     return res.status(500).json({ errors: error });
