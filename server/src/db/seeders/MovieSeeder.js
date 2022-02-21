@@ -19,7 +19,6 @@ class MovieSeeder {
           }
         })
         const body = await response.json()
-        console.log(body)
         const data = {
           imbdId: movie,
           title: body.Title,

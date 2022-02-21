@@ -19,7 +19,7 @@ class Seeder {
     await MovieSeeder.seed()
 
     console.log("Seeding questions...")
-    await QuestionSeeder.seed
+    await QuestionSeeder.seed()
 
     console.log("Done!")
     await connection.destroy()

@@ -9,6 +9,7 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import MainPage from "./layout/MainPage";
 import NewQuestionForm from "./layout/NewQuestionForm.js";
+import Leaderboard from "./layout/Leaderboard";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -35,6 +36,9 @@ const App = (props) => {
         </Route>
         <Route exact path="/new">
           <NewQuestionForm/>
+        </Route>
+        <Route exact path="/leaderboard">
+          <Leaderboard/>
         </Route>
 
         <Route exact path="/users/new" component={RegistrationForm} />
