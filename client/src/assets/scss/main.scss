@@ -1,6 +1,13 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
+@import './stylesheets/colors.scss';
+@import './stylesheets/form.scss';
+@import './stylesheets/triviapage.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Oswald:wght@700&display=swap');
+@import './stylesheets/leaderboard.scss';
+@import './stylesheets/mainpage.scss';
+
 // place global css here
 *,
 *::before,
@@ -11,4 +18,34 @@
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
+}
+
+body{
+  background: $maroon;
+}
+
+.submit-button{
+  border: none;
+  padding: .5em;
+  border-radius: 0.5em;
+  background-color: $maroon;
+  color: white;
+}
+
+.submit-button:hover{
+  cursor: pointer;
+  color: white;
+  background-color: $red;
+}
+
+h1{
+  font-family: "Oswald";
+}
+
+h2{
+  font-family: "Oswald";
+}
+
+h3{
+  font-family: "Oswald";
 }

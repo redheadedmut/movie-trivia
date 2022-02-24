@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 const TriviaLogic = (props) => {
   const [trueFalse, setTrueFalse] = useState('')
   const [hasClicked, setHasClicked] = useState(false)
+  const [redirect, setRedirect] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   //const [randomAnswers, setRandomAnswers] = useState([])
   const [score, setScore] = useState(0)
@@ -28,7 +29,7 @@ const TriviaLogic = (props) => {
   const createNextQuestionButton = () => {
     if(hasClicked == true){
       return(
-        <h2 onClick={handleNextQuestion}>Next Question?</h2>
+        <h2 className="game-over" onClick={handleNextQuestion}>Next Question?</h2>
       )
     }
   }
@@ -58,36 +59,67 @@ const TriviaLogic = (props) => {
         }
       }
       const responseBody = await response.json()
+      setRedirect(true)
       return true
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
-
+  let showAnswers = true;
   let gameOverMessage;
-  if(currentQuestion >= props.questions.length){
+  let showScore = (<h3>Score: {score}</h3>);
+  if(currentQuestion >= props.questions.length || currentQuestion >= 10){
     console.log(currentQuestion)
     let game = {isOver: true, score: score}
-    gameOverMessage = (<h1 onClick={() => postGame(game)}>Game Over! Your score is {score}. Click here to save your game!</h1>)
+    showAnswers = false
+    showScore = ''
+    if(props.user){
+      gameOverMessage = (<h1 className="game-over" onClick={() => postGame(game)}>Game Over! Your score is {score}. Click here to save your score!</h1>)
+    } else{
+      gameOverMessage = (<h1 className="game-over" onClick={() => setRedirect(true)}>Game Over! Your score is {score}. Sign in to save your score!</h1>)
+    }
+  }
+
+  const showAnswersFunction = () =>{
+    if(showAnswers === true){
+      return(
+        <div>
+          <input type="button" className="answer" onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[0])} value={props.questions[currentQuestion]?.randomAnswers[0] || ''}/>
+          <input type="button" className="answer" onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[1])} value={props.questions[currentQuestion]?.randomAnswers[1] || ''}/>
+          <input type="button" className="answer" onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[2])} value={props.questions[currentQuestion]?.randomAnswers[2] || ''}/>
+        </div>
+      )
+    }
   }
 
   const curentMovie = props.movies.find(movie => movie.id === props.questions[currentQuestion]?.movieId)
 
+  if (redirect) {
+    location.href = "/leaderboard";
+  }
 
   return(
-    <div>
-      <h3>Your score is: {score}</h3>
-      <h1>{curentMovie?.title}</h1>
-      <h1>{props.questions[currentQuestion]?.prompt}</h1>
-      <p onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[0])}>{props.questions[currentQuestion]?.randomAnswers[0]}</p>
-      <p onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[1])}>{props.questions[currentQuestion]?.randomAnswers[1]}</p>
-      <p onClick={() => handleAnswerClick(props.questions[currentQuestion]?.randomAnswers[2])}>{props.questions[currentQuestion]?.randomAnswers[2]}</p>
-      <h2>{trueFalse}</h2>
-      {createNextQuestionButton()}
-      {gameOverMessage}
+    <div className="grid-x grid-margin-x trivia-page">
+      <div className="cell small-6 left-side">
+        <h1>{props.questions[currentQuestion]?.prompt}</h1>
+        <h2>{trueFalse}</h2>
+        {showAnswersFunction()}
+        {createNextQuestionButton()}
+        {gameOverMessage}
+        <div className="score">
+          {showScore}
+        </div>
+      </div>
+      <div className="cell small-6 right">
+        <h1 className="movie-title">{curentMovie?.title}</h1>
+        <div className="right-side">
+          <img src={curentMovie?.photoUrl}/>
+          <p className="description">{curentMovie?.description}</p>    
+        </div>
+      </div>
     </div>
   )
-
+  
 }
 
 export default TriviaLogic

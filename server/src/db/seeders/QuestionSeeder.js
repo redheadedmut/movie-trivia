@@ -8,6 +8,7 @@ class QuestionSeeder {
     const finn = await User.query().findOne({ email: "finn@finn.com" })
     const shawshank = await Movie.query().findOne({ imbdId: "tt0111161" })
     const godfather = await Movie.query().findOne({ imbdId: "tt0068646" })
+    const lighthouse = await Movie.query().findOne({ imbdId: "tt7984734" })
     
     const questionData = [
       {
@@ -40,6 +41,22 @@ class QuestionSeeder {
         wrong1: "Warden Freeman",
         wrong2: "Warden Dufresne",
         movieId: shawshank.id,
+        userId: finn.id
+      },
+      {
+        prompt: "Who does Robert Pattinson play in The Lighthouse?",
+        correct: "Thomas Wake",
+        wrong1: "Ephraim Winslow",
+        wrong2: "Thomas Finnegan",
+        movieId: lighthouse.id,
+        userId: finn.id
+      },
+      {
+        prompt: "What's bad luck to kill as a wickie?",
+        correct: "Seagulls",
+        wrong1: "Lobsters",
+        wrong2: "Mermaids",
+        movieId: lighthouse.id,
         userId: finn.id
       },
     ]

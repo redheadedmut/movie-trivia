@@ -66,7 +66,7 @@ const NewQuestionForm = (props) => {
 
     <div>
       <ErrorList errors={errors}/>
-      <div className="callout form">
+      <div className="grid-container form-offset form">
       <h1>Add New Question</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="prompt">
