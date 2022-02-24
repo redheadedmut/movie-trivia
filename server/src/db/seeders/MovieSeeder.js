@@ -7,7 +7,7 @@ class MovieSeeder {
 
   static async seed(){
 
-    const movieIds = ["tt0111161", "tt0068646", "tt0071562", "tt0468569", "tt0050083"]
+    const movieIds = ["tt0111161", "tt0068646", "tt0071562", "tt0468569", "tt0050083", "tt7984734"]
 
     await Promise.all(movieIds.map( async (movie) => {
       try {

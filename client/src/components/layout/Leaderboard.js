@@ -49,7 +49,8 @@ const Leaderboard = (props) =>{
   }, [])
 
   return(
-    <div>
+    <div className="grid">
+      <h1 className="leaderboard-header">Leaderboard</h1>
       {gamesMap}
     </div>
   )

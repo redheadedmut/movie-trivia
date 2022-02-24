@@ -1,0 +1,63 @@
+.left-side{
+  border: 2px solid $black;
+  position: relative;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 1em;
+  margin: 1em;
+  background: $beige;
+  text-align: center;
+}
+
+.trivia-page{
+  margin: 1em;
+}
+
+.score{
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.answer{
+  border: 2px solid $black;
+  border-radius: 0.5em;
+  padding: 1em;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 1.5em;
+  background: $beige;
+  margin: 1em;
+}
+
+.answer:hover{
+  cursor: pointer;
+  color: white;
+  background: $maroon;
+}
+
+.game-over:hover{
+  cursor: pointer;
+  color: $maroon;
+}
+
+.movie-title{
+  color: white;
+}
+
+.right-side{
+  display: flex;
+  color: white;
+
+}
+
+.description{
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: x-large;
+  margin-left: 1em;
+}
+
+.movie-info{
+  display: flex;
+}

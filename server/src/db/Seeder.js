@@ -4,8 +4,12 @@ import UserSeeder from "./seeders/UserSeeder.js"
 import GameSeeder from "./seeders/GameSeeder.js"
 import MovieSeeder from "./seeders/MovieSeeder.js"
 import QuestionSeeder from "./seeders/QuestionSeeder.js"
+import dotenv from "dotenv" 
+dotenv.config()
+
 
 class Seeder {
+
   static async seed() {
     // include individual seed commands here
 
